@@ -1,0 +1,116 @@
+import java.util.*;
+public class Publication {
+    String name;
+    int copies;
+    float price;
+    static float total_sales;
+    static float total_price;
+    static float total_cost;
+
+    void input(){
+        System.out.println("***********************************");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name of book");
+        name = sc.nextLine();
+        System.out.println("enter price of book");
+        price = sc.nextFloat();
+        System.out.println("Enter how many copies you want");
+        copies = sc.nextInt();
+
+    }
+
+    void display(){
+        System.out.println("***********************************");
+        System.out.println("name of book is :" +name);
+        System.out.println("price of book is : "+price);
+        System.out.println("copies ordered is : "+copies);
+        total_sales = price*copies;
+        System.out.println("Total sale is: "+total_sales);
+
+    }
+
+    public static class Books extends Publication{
+        String author;
+        int order;
+        void input(){
+            System.out.println("***********************************");
+            Scanner data = new Scanner(System.in);
+            System.out.println("Enter name of Author ");
+            author = data.nextLine();
+            System.out.println("Enter no. of order");
+            order = data.nextInt();
+            System.out.println("Enter price of book ");
+            price = data.nextFloat();
+
+        }
+
+        void display(){
+            System.out.println("***********************************");
+            System.out.println("name of Author is : "+author);
+            System.out.println("Enter no of order : "+order);
+            System.out.println("Price of book is : "+price);
+        }
+        void salecopy(){
+            System.out.println("***********************************");
+            total_price = price*order;
+            System.out.println("total price of books is : "+total_price);
+            System.out.println("***********************************");
+        }
+
+    }
+
+    public static class magzine extends Publication{
+        String name;
+        int price, order, current_issue, recieved_isssue;
+        Scanner mag  = new Scanner(System.in);
+
+        void input (){
+            System.out.println("***********************************");
+            System.out.println("Enter name of magzine");
+            name = mag.nextLine();
+            System.out.println("enter price of magzine");
+            price = mag.nextInt();
+            System.out.println("Enter order copies");
+            order = mag.nextInt();
+            System.out.println("Enter current issue ");
+            current_issue = mag.nextInt();
+            System.out.println("Enter recieve issue ");
+            recieved_isssue = mag.nextInt();
+
+
+        }
+        void display(){
+            System.out.println("***********************************");
+            System.out.println("Name of magzine is : "+name);
+            System.out.println("price of magzine is : "+price);
+            System.out.println("ordered copies of magzine is : "+order);
+            System.out.println("current issue of magzine is : "+current_issue);
+            System.out.println("recieved issue of magzine is : "+recieved_isssue);
+        }
+
+        void salecopy(){
+            System.out.println("***********************************");
+            total_cost = price*order;
+            System.out.println("total cost of magzines is : "+total_cost);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("***********************************");
+        Publication p = new Publication();
+        Books b = new Books();
+        magzine m = new magzine();
+        p.input();
+        p.display();
+        b.input();
+        b.display();
+        b.salecopy();
+        m.input();
+        m.display();
+        m.salecopy();
+        total_sales = total_price + total_cost;
+        System.out.println("total sales is : "+total_sales);
+        System.out.println("***********************************");
+    }
+}
+

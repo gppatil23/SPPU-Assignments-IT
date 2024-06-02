@@ -1,0 +1,156 @@
+//Case study 10  Factory Design Pattern                                                                                                                     // Abstract Car class
+abstract class Car {
+    protected String model;
+    protected String color;
+
+    public Car(String model, String color) {
+        this.model = model;
+        this.color = color;
+    }
+
+    public abstract void allocateAccessories();
+
+    public abstract void assembleBody();
+
+    public abstract void paint();
+
+    public abstract void applyLogo();
+
+    public void finalizeCar() {
+        System.out.println("Car Finalized: " + model + " " + color);
+    }
+}
+
+// Hatchback class (subclass of Car)
+class Hatchback extends Car {
+    public Hatchback(String color) {
+        super("Hatchback", color);
+    }
+
+    @Override
+    public void allocateAccessories() {
+        System.out.println("Allocating Hatchback Accessories");
+    }
+
+    @Override
+    public void assembleBody() {
+        System.out.println("Assembling Hatchback Body");
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("Painting Hatchback");
+    }
+
+    @Override
+    public void applyLogo() {
+        System.out.println("Applying Hatchback Logo");
+    }
+}
+
+// Sedan class (subclass of Car)
+class Sedan extends Car {
+    public Sedan(String color) {
+        super("Sedan", color);
+    }
+
+    @Override
+    public void allocateAccessories() {
+        System.out.println("Allocating Sedan Accessories");
+    }
+
+    @Override
+    public void assembleBody() {
+        System.out.println("Assembling Sedan Body");
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("Painting Sedan");
+    }
+
+    @Override
+    public void applyLogo() {
+        System.out.println("Applying Sedan Logo");
+    }
+}
+
+// SUV class (subclass of Car)
+class SUV extends Car {
+    public SUV(String color) {
+        super("SUV", color);
+    }
+
+    @Override
+    public void allocateAccessories() {
+        System.out.println("Allocating SUV Accessories");
+    }
+
+    @Override
+    public void assembleBody() {
+        System.out.println("Assembling SUV Body");
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("Painting SUV");
+    }
+
+    @Override
+    public void applyLogo() {
+        System.out.println("Applying SUV Logo");
+    }
+}
+
+// CarFactory class
+class CarFactory {
+    public static Car buildCar(String carType, String color) {
+        Car car = null;
+
+        switch (carType.toLowerCase()) {
+            case "hatchback":
+                car = new Hatchback(color);
+                break;
+            case "sedan":
+                car = new Sedan(color);
+                break;
+            case "suv":
+                car = new SUV(color);
+                break;
+            default:
+                System.out.println("Invalid car type");
+        }
+
+        return car;
+    }
+}
+
+// Test Factory Pattern class
+ class TestFactoryPattern {
+    public static void main(String[] args) {
+        Car hatchback = CarFactory.buildCar("hatchback", "Blue");
+        hatchback.allocateAccessories();
+        hatchback.assembleBody();
+        hatchback.paint();
+        hatchback.applyLogo();
+        hatchback.finalizeCar();
+
+        System.out.println();
+
+        Car sedan = CarFactory.buildCar("sedan", "Red");
+        sedan.allocateAccessories();
+        sedan.assembleBody();
+        sedan.paint();
+        sedan.applyLogo();
+        sedan.finalizeCar();
+
+        System.out.println();
+
+        Car suv = CarFactory.buildCar("suv", "Black");
+        suv.allocateAccessories();
+        suv.assembleBody();
+        suv.paint();
+        suv.applyLogo();
+        suv.finalizeCar();
+    }
+}

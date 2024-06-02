@@ -1,0 +1,57 @@
+import java.util.*;
+abstract class Shape{
+    static double dim1,dim2,area;
+
+    void input() {
+        Scanner i = new Scanner(System.in);
+        System.out.println("Enter dimention 1");
+        dim1 = i.nextDouble();
+        System.out.println("Enter dimention 2 ");
+        dim2 = i.nextDouble();
+    }
+}
+// ========================= Class Triangle ==========================================
+class Triangle extends Shape{
+    void cal_area(){
+        area = (dim1*dim2)/2;
+        System.out.println("Area of Triangle is :"+area);
+    }
+}
+
+// ======================== Class rectangle =======================================
+class Rectangle extends Shape{
+    void cal_area(){
+        area = (dim1*dim2);
+        System.out.println("Area of Rectangle is :"+area);
+    }
+}
+
+public class Output {
+    public static void main(String[] args) {
+        int a;
+        System.out.println("Select your choice \n1. Area Triangle \n2. Area of Rectangle");
+        Scanner d = new Scanner(System.in);
+        System.out.println("**********************************************");
+        System.out.println("Enter your Choice");
+                a = d.nextInt();
+        Shape s;
+            switch (a){
+                case 1:
+                    Triangle t = new Triangle();
+                    s=t;
+                    t.input();
+                    t.cal_area();
+                    break;
+                case 2:
+                    Rectangle r = new Rectangle();
+                    s=r;
+                    r.input();
+                    r.cal_area();
+                    break;
+                default:
+                    System.out.println("Invalid choice!!!");
+            }
+
+
+    }
+}

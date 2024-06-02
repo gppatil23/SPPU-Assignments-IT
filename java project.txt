@@ -1,0 +1,77 @@
+import java.util.Scanner;
+public class Complex {
+	double real,imag;
+	Complex(){
+		real = 0;
+		imag = 0;
+	}
+	Complex( double r,double i){
+		this.real = r;
+		this.imag = i;
+	}
+	
+	// Taking input from user
+	void input(Complex c1,Complex c2) {
+		System.out.println("Enter real part of first number");
+		Scanner data = new Scanner(System.in);
+		c1.real = data.nextDouble();
+		System.out.println("Enter imaginary part of first number");
+		c1.imag = data.nextDouble();
+		System.out.println("**********************************");
+		System.out.println("Enter real part of second number");
+		c2.real = data.nextDouble();
+		System.out.println("Enter imaginary part of second number");
+		c2.imag = data.nextDouble();
+		System.out.println("***********************************");
+	}
+	// To display what user gave the input
+	void display(Complex c1,Complex c2) {
+		System.out.println("First Complex number is : "+c1.real+ "+"+c1.imag+"i");
+		System.out.println("Secondd Complex number is : "+c2.real+"+"+c2.imag+"i");
+		System.out.println("************************************");
+	} 
+	
+	//Addition of two Complex number
+	
+	void addition(Complex c1, Complex c2) {
+		double a , b;
+		a = c1.real + c2.real;
+		b = c1.imag + c2.imag;
+		System.out.println("Addition of two Complex number is : " +a+"+"+b+"i");
+		System.out.println("************************************");
+	}
+	
+	//Subtraction of two Complex number
+	
+	void substraction(Complex c1,Complex c2) {
+		double a , b;
+		a = c1.real - c2.real;
+		b = c1.imag - c2.imag;
+		System.out.println("Substraction of two Complex number is : " +a+"+"+b+"i");
+		System.out.println("************************************");
+	}
+	
+	//Multiplication of two Complex number
+	
+	void multiplication(Complex c1,Complex c2) {
+		double a,b;
+		a = (c1.real * c2.real) - (c1.imag * c2.imag);
+		b = (c1.real * c2.imag) + (c2.real *c1.imag);
+		System.out.println("Multiplication of two Complex number is : " +a+"+"+b+"i");
+		System.out.println("************************************");
+		
+	}
+	
+
+	public static void main(String[] args) {
+		Complex c1 = new Complex();
+		Complex c2 = new Complex();
+		c1.input(c1, c2);
+		c1.display(c1,c2);
+		c1.addition(c1, c2);
+		c1.substraction(c1, c2);
+		c1.multiplicatio(c1, c2);
+				
+	}
+
+}

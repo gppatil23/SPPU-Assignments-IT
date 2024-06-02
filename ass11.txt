@@ -1,0 +1,97 @@
+//Case study 11 Strategy design Pattern                                                                               // PaymentStrategy interface
+interface PaymentStrategy {
+    void pay(double amount);
+}
+
+// Concrete implementation for Credit Card payment
+class CreditCardPayment implements PaymentStrategy {
+    private String cardNumber;
+    private String expiryDate;
+    private String cvv;
+
+    public CreditCardPayment(String cardNumber, String expiryDate, String cvv) {
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card");
+        // Additional logic for Credit Card payment
+    }
+}
+
+// Concrete implementation for PayPal payment
+class PayPalPayment implements PaymentStrategy {
+    private String email;
+
+    public PayPalPayment(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using PayPal");
+        // Additional logic for PayPal payment
+    }
+}
+
+// Concrete implementation for BitCoin payment
+class BitCoinPayment implements PaymentStrategy {
+    private String walletAddress;
+
+    public BitCoinPayment(String walletAddress) {
+        this.walletAddress = walletAddress;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using BitCoin");
+        // Additional logic for BitCoin payment
+    }
+}
+
+// ShoppingCart class that uses the Strategy pattern
+class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
+
+    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void checkout(double totalAmount) {
+        // Additional checkout logic
+
+        if (paymentStrategy != null) {
+            paymentStrategy.pay(totalAmount);
+        } else {
+            System.out.println("Please set a payment strategy before checkout.");
+        }
+    }
+}
+
+// TestStrategyPattern class
+ class TestStrategyPattern {
+    public static void main(String[] args) {
+        // Creating instances of payment strategies
+        PaymentStrategy creditCardPayment = new CreditCardPayment("1234-5678-9012-3456", "12/24", "123");
+        PaymentStrategy payPalPayment = new PayPalPayment("john.doe@example.com");
+        PaymentStrategy bitCoinPayment = new BitCoinPayment("1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2");
+
+        // Creating a shopping cart
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        // Testing Credit Card payment
+        shoppingCart.setPaymentStrategy(creditCardPayment);
+        shoppingCart.checkout(100.0);
+
+        // Testing PayPal payment
+        shoppingCart.setPaymentStrategy(payPalPayment);
+        shoppingCart.checkout(50.0);
+
+        // Testing BitCoin payment
+        shoppingCart.setPaymentStrategy(bitCoinPayment);
+        shoppingCart.checkout(200.0);
+    }
+}

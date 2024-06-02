@@ -1,0 +1,177 @@
+import java.util.*;
+public class Employee {
+    String name;
+    float id;
+    long mob;
+
+    void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name : ");
+        name = sc.nextLine();
+        System.out.println("Enter id : ");
+        id = sc.nextFloat();
+        System.out.println("Enter mob : ");
+        mob = sc.nextLong();
+    }
+
+    void display() {
+        System.out.println("name of Employee is : " + name);
+        System.out.println("id of Employee is : " + name);
+        System.out.println("id of Employee is : " + mob);
+    }
+
+    public static class Programmer extends Employee{
+        double basic_pay,net_salary,gross_salary;
+        Programmer() {
+            basic_pay = 0;
+        }
+        void get_salary(){
+            System.out.println("***********************************************");
+            System.out.println("Enter basic pay");
+            Scanner sc = new Scanner(System.in);
+            basic_pay = sc.nextDouble();
+        }
+        void calculate(){
+            gross_salary = basic_pay + (basic_pay * 0.97);
+            net_salary = gross_salary - (basic_pay*0.12) - (basic_pay * 0.10) - (basic_pay * 0.001);
+        }
+        void display(){
+            System.out.println("DA ="+(basic_pay * 0.97));
+            System.out.println("HRA ="+(basic_pay *0.10));
+            System.out.println("PF = "+(basic_pay * 0.12));
+            System.out.println("Staff club = "+(basic_pay* 0.001));
+            System.out.println("gross salary ="+gross_salary);
+            System.out.println("net salary ="+net_salary);
+            System.out.println("***********************************************");
+        }
+    }
+
+    public static class Team_leader extends Employee{
+        double basic_pay,net_salary,gross_salary;
+        Team_leader(){
+            basic_pay = 0;
+        }
+        void get_salary(){
+            System.out.println("***********************************************");
+            System.out.println("Enter basic pay");
+            Scanner sc = new Scanner(System.in);
+            basic_pay = sc.nextDouble();
+        }
+        void calculation(){
+            gross_salary = basic_pay + (basic_pay * 0.97);
+            net_salary = gross_salary - (basic_pay*0.12) - (basic_pay*0.10) - (basic_pay*0.001);
+        }
+        void display(){
+            System.out.println("DA = "+(basic_pay));
+            System.out.println("HRA = "+(basic_pay*0.10));
+            System.out.println("PF = "+(basic_pay*0.12));
+            System.out.println("Staff club = "+(basic_pay*0.001));
+            System.out.println("gross salary ="+gross_salary);
+            System.out.println("net salary ="+net_salary);
+            System.out.println("***********************************************");
+        }
+    }
+
+    public static class Project_manager extends Employee{
+        double basic_pay,net_salary,gross_salary;
+        Project_manager(){
+            basic_pay = 0;
+        }
+        void get_salary(){
+            System.out.println("***********************************************");
+            System.out.println("Enter basic pay");
+            Scanner sc = new Scanner(System.in);
+            basic_pay = sc.nextDouble();
+        }
+        void calculation(){
+            gross_salary = basic_pay + (basic_pay * 0.97);
+            net_salary = gross_salary - (basic_pay*0.12) - (basic_pay*0.10) - (basic_pay*0.001);
+        }
+        void display(){
+            System.out.println("DA = "+(basic_pay));
+            System.out.println("HRA = "+(basic_pay*0.10));
+            System.out.println("PF = "+(basic_pay*0.12));
+            System.out.println("Staff club = "+(basic_pay*0.001));
+            System.out.println("gross salary ="+gross_salary);
+            System.out.println("net salary ="+net_salary);
+            System.out.println("***********************************************");
+        }
+    }
+
+    public static class Assistant_project_manager extends Employee{
+        double basic_pay,net_salary,gross_salary;
+        Assistant_project_manager(){
+            basic_pay = 0;
+        }
+        void get_salary(){
+            System.out.println("***********************************************");
+            System.out.println("Enter basic pay");
+            Scanner sc = new Scanner(System.in);
+            basic_pay = sc.nextDouble();
+        }
+        void calculation(){
+            gross_salary = basic_pay + (basic_pay * 0.97);
+            net_salary = gross_salary - (basic_pay*0.12) - (basic_pay*0.10) - (basic_pay*0.001);
+        }
+        void display(){
+            System.out.println("DA = "+(basic_pay));
+            System.out.println("HRA = "+(basic_pay*0.10));
+            System.out.println("PF = "+(basic_pay*0.12));
+            System.out.println("Staff club = "+(basic_pay*0.001));
+            System.out.println("gross salary ="+gross_salary);
+            System.out.println("net salary ="+net_salary);
+            System.out.println("***********************************************");
+        }
+    }
+
+    public static void main(String[] args) {
+        int ch;
+        do {
+            System.out.println("Enter your choice \n1.Employee details\n2.Programmer details\n3.Team leader details\n4.Project manager\n5.Assistant project manager\n6.Exit");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Select your choice");
+            ch = sc.nextInt();
+            switch (ch){
+                case 1:
+                    Employee e = new Employee();
+                    e.input();
+                    e.display();
+                    break;
+                case 2:
+                    Programmer p = new Programmer();
+                    p.get_salary();
+                    p.calculate();
+                    p.display();
+                    break;
+                case 3:
+                    Team_leader t = new Team_leader();
+                    t.get_salary();
+                    t.calculation();
+                    t.display();
+                    break;
+                case 4:
+                    Project_manager m = new Project_manager();
+                    m.get_salary();
+                    m.calculation();
+                    m.display();
+                    break;
+                case 5:
+                    Assistant_project_manager a = new Assistant_project_manager();
+                    a.get_salary();
+                    a.calculation();
+                    a.display();
+                    break;
+                case 6:
+                    System.out.println("Exit");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }while(ch!=6);
+    }
+    }
+
+
+
+
+

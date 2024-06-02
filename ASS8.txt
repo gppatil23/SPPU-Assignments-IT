@@ -1,0 +1,237 @@
+import java.io.File;
+
+import java.io.FileWriter;
+
+import java.io.FileReader;
+
+import java.util.*;
+
+class FileOperation{
+
+    File f;
+
+    FileWriter fw;
+    void createFile(String path,String FileName){
+
+        try {
+
+            f=new File(path);
+
+            if(f.createNewFile()) {
+
+                System.out.println("\n File "+FileName+" Created Successfully");
+                try{
+                    fw=new FileWriter(path);
+                    fw.write("Roll No \t Student Name");
+                    fw.write("\n.....................................................................");
+
+                }catch(Exception e){
+                    System.out.println(e);
+                }
+            }
+
+            else{
+
+                System.out.println(" File "+FileName+"already Exists");
+
+            }
+
+        }
+
+        catch(Exception e){
+
+            System.out.println("Unable To Create File"+e);
+
+        }
+
+    }
+
+    void writeOnFile(String path) {
+
+        String studName;
+
+        int id,ch=1;
+
+        try {
+
+//fw=new FileWriter(path);
+
+            Scanner sc=new Scanner(System.in);
+
+            do{
+                System.out.println("Enter Details");
+
+                System.out.println("Enter Student ID");
+
+                id= sc.nextInt();
+
+                System.out.println("Enter Student Name");
+
+                studName=sc.next();
+
+                fw.write( "\n"+id+" \t\t "+studName);
+                System.out.println("Enter 0 to Exit Or 1 To continue..");
+                ch=sc.nextInt();
+            }while(ch!=0);
+            fw.close();
+
+            System.out.println("Successfully Write Into File");
+
+            System.out.println("File Closed Successfully");
+
+        }catch(Exception e) {
+
+            System.out.println("Unable To Write Into File "+e);
+
+        }
+
+    }
+
+    void displayFile(String path) {
+
+        try {
+
+            FileReader fr=new FileReader(path);
+
+            int ch;
+
+            while((ch=fr.read())!=-1) {
+
+                System.out.print((char)(ch));
+
+            }
+
+            fr.close();
+
+        }catch(Exception e) {
+
+            System.out.println("Unable To Display "+e);
+
+        }
+
+    }
+
+    void delete(String path) {
+
+        f.delete();
+
+        System.out.println("File Delete SuccessFully");
+
+        path="";
+
+    }
+
+
+
+
+    void searchOnFile(String path){
+        String line,record;
+
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter id you want to search : ");
+        record=sc.nextLine();
+        try{
+
+            Scanner s1=new Scanner(f);
+
+            while(s1.hasNextLine()){
+                line=s1.nextLine();
+                if(line.startsWith(record)){
+                    System.out.println("Roll No \t Student Name\n");
+                    System.out.println("Record Found....\n");
+                    System.out.println(line);
+                }
+
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+
+    }
+
+
+}
+
+class FileHandling1 {
+
+    public static void main(String[] args) {
+
+// TODO Auto-generated method stub
+
+        String path="C:\\Users\\Gaurav Patil\\Desktop";
+
+        System.out.println("Enter Name of file");
+
+        Scanner sc=new Scanner(System.in);
+
+        String FileName=sc.nextLine();
+
+        path+=FileName;
+
+        FileOperation file=new FileOperation();
+
+        int ch;
+
+        do{
+
+            System.out.println("1: Create File");
+
+            System.out.println("2: Write On File");
+
+            System.out.println("3: Display File");
+
+            System.out.println("4: Delete File");
+
+            System.out.println("5: Search File");
+
+            System.out.println("0: Exit ");
+
+
+            System.out.println("\n Entet Your Choice ");
+
+            ch=sc.nextInt();
+
+            switch(ch) {
+
+                case 1:
+
+                    file.createFile(path, FileName);
+
+                    break;
+
+                case 2:
+
+                    file.writeOnFile(path);
+
+                    break;
+
+                case 3:
+
+                    file.displayFile(path);
+
+                    break;
+
+                case 4:
+
+                    file.delete(path);
+
+                    break;
+
+                case 5:
+
+                    file.searchOnFile(path);
+
+
+                    break;
+
+
+            }
+
+        }while(ch!=0);
+
+        System.out.println("\n Exit Successfully");
+
+    }
+
+}

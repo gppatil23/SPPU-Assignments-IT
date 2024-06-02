@@ -1,0 +1,186 @@
+import java.util.Scanner;
+
+// Define the Vehicle interface
+interface Vehicle {
+    void gearChange(int newGear);
+    void speedUp(int increment);
+    void applyBrakes(int decrement);
+
+    default void displayInfo(String type, int gear, int speed) {
+        System.out.println(type + ": Gear = " + gear + ", Speed = " + speed);
+    }
+}
+
+class Bicycle implements Vehicle {
+    private int gear = 1;
+    private int speed = 0;
+
+    @Override
+    public void gearChange(int newGear) {
+        gear = newGear;
+        System.out.println("The Gear of vehicle is: "+newGear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        int g;
+        speed = 40;
+        g = speed + increment;
+        if(g>40){
+            System.out.println("Speed after increment is :"+g);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        int k;
+        speed = 40;
+        k=speed - decrement;
+        if(k<40){
+            System.out.println("Speed after increment is :"+k);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+}
+
+class Bike implements Vehicle {
+    private int gear = 1;
+    private int speed = 0;
+
+    @Override
+    public void gearChange(int newGear) {
+        gear = newGear;
+        System.out.println("The Gear of vehicle is: "+newGear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        int g;
+        speed = 100;
+        g = speed +increment;
+        if(g>100){
+            System.out.println("Speed after increment is :"+g);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        int k;
+        speed = 100;
+        k=speed - decrement;
+        if(k<100){
+            System.out.println("Speed after increment is :"+k);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+}
+
+class Car implements Vehicle {
+    private int gear = 1;
+    private int speed = 0;
+
+    @Override
+    public void gearChange(int newGear) {
+        gear = newGear;
+        System.out.println("The Gear of vehicle is: "+newGear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        int g;
+        speed = 150;
+        g = speed+increment;
+        if(g>150){
+            System.out.println("Speed after increment is :"+g);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        int k;
+        speed = 150;
+        k=speed - decrement;
+        if(k<150){
+            System.out.println("Speed after increment is :"+k);
+        }
+        else{
+            System.out.println("Invalid input or Speed is constant");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Vehicle vehicle = null;
+
+        System.out.println("Select a vehicle \n1.Bicycle \n2.Bike \n3.Car");
+        System.out.println("Enter your choice");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                vehicle = new Bicycle();
+                break;
+            case 2:
+                vehicle = new Bike();
+                break;
+            case 3:
+                vehicle = new Car();
+                break;
+            default:
+                System.out.println("Invalid choice. Exiting.");
+                return;
+        }
+
+        // Interact with the selected vehicle
+        System.out.println("You've selected a " + vehicle.getClass().getSimpleName());
+
+        while (true) {
+            System.out.println("1. Gear Change");
+            System.out.println("2. Speed Up");
+            System.out.println("3. Apply Brakes");
+            System.out.println("4. Exit");
+            System.out.println("Enter your choice: ");
+            int option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    System.out.print("Enter new gear: ");
+                    int newGear = scanner.nextInt();
+                    vehicle.gearChange(newGear);
+                    break;
+                case 2:
+                    System.out.print("Enter speed increment: ");
+                    int increment = scanner.nextInt();
+                    vehicle.speedUp(increment);
+                    break;
+                case 3:
+                    System.out.print("Enter speed decrement: ");
+                    int decrement = scanner.nextInt();
+                    vehicle.applyBrakes(decrement);
+                    break;
+                case 4:
+                    System.out.println("Exiting program.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please select again.");
+            }
+
+
+        }
+    }
+}
